@@ -13,8 +13,8 @@ public class conexion1 {
     final private String urlRoot = "localhost";
     final private String dbBase = "empresa";
     final private String urlPort = "jdbc:mysql://localhost:3306/" + dbBase;
-    final private String dbUser = "root";
-    final private String dbPass = "123456";
+    final private String dbUser = "DatabaseConnection"; // cambia esto por favor, lo hice para probar localmente
+    final private String dbPass = "fMBTBgjNRZyyiv3C"; // esto tmbn
     public Connection con = null;
     public ResultSet resultSet;
     public Statement statement;

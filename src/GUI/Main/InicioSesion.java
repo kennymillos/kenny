@@ -2,6 +2,8 @@
 package GUI.Main;
 
 import Conexion.conexion1;
+import GUI.Administrador.MainJFrame.dashboard;
+import GUI.Empleado.MainJFrame.Dashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,15 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class InicioSesion extends javax.swing.JFrame {
 
-   conexion1 bd = new conexion1();
-      public static final String URL = "jdbc:mysql://localhost:3306/empresa";
+    public static final String URL = "jdbc:mysql://localhost:3306/empresa";
     public static final String USER = "root";
     public static final String PASS = "123456";
     
-    PreparedStatement ps;
-    ResultSet rs;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
-   public static Connection getConection() {
+    public static Connection getConection() {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -148,47 +149,47 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-      String username = txtUsuario.getText();
-    String password = new String(jPassContrasena.getPassword());
+     String username = txtUsuario.getText();
+        String password = new String(jPassContrasena.getPassword());
 
-    bd.conectar();  // Asegúrate de que este método esté configurado correctamente
-    System.out.println("select * from personas where usuario = \"" + username + "\"");
-
-    try {
-        bd.resultSet = bd.statement.executeQuery("select * from personas where usuario = \"" + username + "\"");
-
-        if (bd.resultSet.next()) {
-            String user = bd.resultSet.getString("usuario");
-            String psw = bd.resultSet.getString("contrasena");
-            String cargo = bd.resultSet.getString("cargo");
-
-            if (user.equals(username) && psw.equals(password)) {
-                if ("Supervisor(Administrador)".equalsIgnoreCase(cargo)) {
-                    // TODO Arreglar esto ↓
-                    // new Permisos().setVisible(true);
-                } else {
-                    // TODO Arreglar esto tmbn ↓
-                    //new inicioEmpleado().setVisible(true); 
-                }
-                this.dispose();  
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario no existe.");
-        }
-
-    } catch (Exception e) {
-        System.err.println("ERROR " + e);
-    } finally {
+        Connection con = null;
         try {
-            if (bd.resultSet != null) bd.resultSet.close();
-            if (bd.statement != null) bd.statement.close();
-            if (bd.con != null) bd.con.close();
+            con = getConection();
+            String query = "SELECT * FROM personas WHERE usuario = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String user = rs.getString("usuario");
+                String psw = rs.getString("contrasena");
+                String cargo = rs.getString("cargo");
+
+                if (user.equals(username) && psw.equals(password)) {
+                    if ("Supervisor(Administrador)".equalsIgnoreCase(cargo)) {
+                        new dashboard().setVisible(true);
+                    } else {
+                        new Dashboard().setVisible(true);
+                    }
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El usuario no existe.");
+            }
         } catch (Exception e) {
-            System.err.println("ERROR al cerrar recursos: " + e);
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (Exception e) {
+                System.err.println("ERROR al cerrar recursos: " + e);
+            }
         }
-    }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed

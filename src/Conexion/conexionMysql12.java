@@ -36,13 +36,11 @@ public class conexionMysql12 {
                 while (dbc.resultSet.next()) {
                     // Imprimir la información de la tabla
                     System.out.println(
-                        "CODIGO: " + dbc.resultSet.getString("codigo") + "\n" +
+                        "ID: " + dbc.resultSet.getString("codigo") + "\n" +
                         "NOMBRE: " + dbc.resultSet.getString("nombre") + "\n" +
-                        "ID: " + dbc.resultSet.getString("id") + "\n" +
-                        "DIRECCION: " + dbc.resultSet.getString("direccion") + "\n" +
-                        "TELEFONO: " + dbc.resultSet.getString("telefono") + "\n" +
-                        "EMAIL: " + dbc.resultSet.getString("email") + "\n" +
-                        "NACIMIENTO: " + dbc.resultSet.getString("nacimiento") + "\n" +
+                        "DOCUMENTO: " + dbc.resultSet.getString("id") + "\n" +
+                        "TELEFONO: " + dbc.resultSet.getString("direccion") + "\n" +
+                       "EMAIL: " + dbc.resultSet.getString("email") + "\n" +
                         "CARGO: " + dbc.resultSet.getString("cargo") + "\n" +
                         "USUARIO: " + dbc.resultSet.getString("usuario") + "\n" +
                         "CONTRASENA: " + dbc.resultSet.getString("contrasena") + "\n"

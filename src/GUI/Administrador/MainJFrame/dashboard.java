@@ -6,18 +6,11 @@ import static GUI.Main.InicioSesion.PASS;
 import static GUI.Main.InicioSesion.URL;
 import static GUI.Main.InicioSesion.USER;
 import GUI.Administrador.Paneles.Registro;
-
-import javax.swing.JFrame;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Kenny Londoño
@@ -42,10 +35,7 @@ PreparedStatement ps;
         //cargarDatosTabla();
     }
     
-    private void limpiarcajas(){
    
-       // txtCodigo.setText(null);         
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -233,44 +223,9 @@ PreparedStatement ps;
     }
 
     
-    private void ShowFrame(JFrame frame) {
-      frame.setExtendedState(this.MAXIMIZED_BOTH);
-        frame.setLocation(0,0);
+   
     
-    frame.setVisible(true); // Muestra el frame
-    frame.setLocationRelativeTo(null); // Centra el frame en la pantalla
-    this.setVisible(false); // Oculta el frame actual
-    }
-    
-    private void cargarDatosTabla() {
-     DefaultTableModel modelo = new DefaultTableModel();
-        //jtPermisos.setModel(modelo);
-
-        modelo.addColumn("Codigo");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Motivo");
-        modelo.addColumn("Solicitud");
-        modelo.addColumn("Estado");
-
-        try (Connection con = getConection();
-             PreparedStatement ps = con.prepareStatement("SELECT Codigo, Nombre, Motivo, Solicitud, Estado  FROM permisos_inasistencias");
-             ResultSet rs = ps.executeQuery()) {
-
-            ResultSetMetaData rsMd = rs.getMetaData();
-            int cantidadColumnas = rsMd.getColumnCount();
-
-            while (rs.next()) {
-                Object[] filas = new Object[cantidadColumnas];
-                for (int i = 0; i < cantidadColumnas; i++) {
-                    filas[i] = rs.getObject(i + 1);
-                }
-                modelo.addRow(filas);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error al cargar datos: " + e.getMessage());
-        }
-    }
-    
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistro;

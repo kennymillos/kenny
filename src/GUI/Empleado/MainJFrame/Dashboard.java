@@ -7,7 +7,7 @@ import static GUI.Main.InicioSesion.PASS;
 import static GUI.Main.InicioSesion.URL;
 import static GUI.Main.InicioSesion.USER;
 import GUI.Administrador.Paneles.Registro;
-import GUI.Empleado.Paneles.Permisos;
+import GUI.Empleado.Paneles.PermisosEmpleado;
 import javax.swing.JFrame;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -111,7 +111,6 @@ try {
         btnActualizar = new javax.swing.JButton();
         btnRegistro = new javax.swing.JButton();
         btnSolicitudes = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -265,7 +264,7 @@ try {
 
         btnRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistro.setText("Registro");
+        btnRegistro.setText("Control de Horario");
         btnRegistro.setBorder(null);
         btnRegistro.setContentAreaFilled(false);
         btnRegistro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -291,20 +290,6 @@ try {
         });
         jPanel1.add(btnSolicitudes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 260, 60));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Empleados");
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/btnMenus.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 260, 60));
-
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cerrar Sesión");
@@ -316,7 +301,7 @@ try {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 260, 60));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 260, 60));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -350,20 +335,12 @@ try {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-       //Registro regAdm = new Registro();
-       
-       //ShowFrame(regAdm);
+        
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitudesActionPerformed
-        Paneles.Paneles.Show(pantalla, new Permisos());
+        Paneles.Paneles.Show(pantalla, new PermisosEmpleado());
     }//GEN-LAST:event_btnSolicitudesActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         Dashboard empAdm = new Dashboard();
-       
-       ShowFrame(empAdm);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       System.exit(0); 
@@ -539,7 +516,6 @@ try {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSolicitudes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
